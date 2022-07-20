@@ -44,6 +44,7 @@ To uninstall normally run:
 sudo make uninstall
 ```
 ### ❓Other build options:
+
 + here 🠒 compiles to current directory
 + link 🠒 compiles to current directory and creates symbolic link in binary directory
 + unlink 🠒 removes symbolic link
@@ -70,8 +71,29 @@ sss -f test.png
 ```
 
 ### 🗒️ Notes
+
 + the last box drawn will be the screenshot written
 + the program does not append numbers, e.g. ``ss-1.png, ss-2.png, etc``.
 if there is a conflict in nameing the old version is overwritten
 
 TODO: add video of how to use the program
+
+### ⚙️ Configuration
+
+Configuration is very minimal currently. It is done through the ``config.h``
+source file, the contents are as follows:
+```c
+#define LINE_WIDTH 4 /* width of drawn box lines */
+#define LINE_COLOR 0xEBDBB2 /* color of drawn box lines */
+#define SS_DIR "~/Desktop/" /* directory you want screenshots to go in */
+```
+
+### 🗒️ Nots
+
++ The actual captured area will be bound to the size drawn by the user, excluding
+the lines visable and what they obscure
++ You must recompile each time you make a change to configuration
++ If you wish to remove the source files after compilation, this is fine,
+just make sure that you are happy with your configuration as you cannot change
+it without recompiling
+
