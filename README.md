@@ -50,19 +50,21 @@ sudo make uninstall
 
 ## 🏃‍♂️ Usage
 
-Run with no arguments(creates ~/Downloads/screenshot.png):
+SS_DIR = ~/Downloads (specified in ``config.h``)
+
+Run with no arguments(creates ``SS_DIR/screenshot.png``):
 ```shell
 sss
 ```
-Run with `-n` option to specify a name(put in ~/Downloads):
+Run with `-n` option to specify a name(put in ``SS_DIR``):
 ```shell
 sss -n test.png
 ```
-Run with `-f` option alone(creates ~/Downloads/fullscreen.png):
+Run with `-f` option alone(creates ``SS_DIR/fullscreen.png``):
 ```shell
 sss -f
 ```
-Run with `-f` option and specified name(put in ~/Downloads):
+Run with `-f` option and specified name(put in ``SS_DIR``):
 ```shell
 sss -f test.png
 ```
