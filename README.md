@@ -88,7 +88,7 @@ source file, the contents are as follows:
 #define SS_DIR "~/Desktop/" /* directory you want screenshots to go in */
 ```
 
-### 🗒️ Nots
+### 🗒️Notes
 
 + The actual captured area will be bound to the size drawn by the user, excluding
 the lines visable and what they obscure
