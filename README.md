@@ -76,8 +76,7 @@ sss -f test.png
 + the program does not append numbers, e.g. ``ss-1.png, ss-2.png, etc``.
 if there is a conflict in nameing the old version is overwritten
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/8Ogb0IH" data-context="false" ><a href="//imgur.com/a/8Ogb0IH"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
+[Watch the video](https://imgur.com/a/8Ogb0IH)
 ## ⚙️ Configuration
 
 Configuration is very minimal currently. It is done through the ``config.h``
