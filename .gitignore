@@ -4,4 +4,6 @@
 !config.h
 !sss.c
 !Makefile
+!screenshots
+screenshots/*
 !screenshots/.gitkeep
