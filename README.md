@@ -85,10 +85,10 @@ source file, the contents are as follows:
 ```c
 #define LINE_WIDTH 4 /* width of drawn box lines */
 #define LINE_COLOR 0xEBDBB2 /* color of drawn box lines */
-#define SS_DIR "~/Desktop/" /* directory you want screenshots to go in */
+#define SS_DIR SRC_DIR "/screenshots/" /* directory you want screenshots to go in */
 ```
 
-### 🗒️Notes
+### 🗒️ Notes
 
 + The actual captured area will be bound to the size drawn by the user, excluding
 the lines visable and what they obscure
@@ -96,4 +96,15 @@ the lines visable and what they obscure
 + If you wish to remove the source files after compilation, this is fine,
 just make sure that you are happy with your configuration as you cannot change
 it without recompiling
++ You must give ``SS_DIR`` an absolute path if you remove ``SRC_DIR``. E.g.
+if I wanted to put screenshots in my home folder I would change:
+```c
+#define SS_DIR SRC_DIR "/screenshots/" /* directory you want screenshots to go in */
+```
+to:
+```c
+#define SS_DIR "/home/MYNAME/" /* directory you want screenshots to go in */
+```
+
+
 
