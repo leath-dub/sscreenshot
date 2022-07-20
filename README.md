@@ -1,6 +1,6 @@
 # SimpleScreenShot - SSS
 
-A simple screenshot program written in C + XCB api
+A simple, toolkit-less screenshot program written in C + XCB api
 
 ## 📋 Features
 
