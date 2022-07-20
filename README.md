@@ -42,7 +42,7 @@ To uninstall normally run:
 ```shell
 sudo make uninstall
 ```
-❓Other build options:
-    + here -> compiles to current directory
-    + link -> compiles to current directory and creates symbolic link in binary directory
-    + unlink -> removes symbolic link
+### ❓Other build options:
++ here -> compiles to current directory
++ link -> compiles to current directory and creates symbolic link in binary directory
++ unlink -> removes symbolic link
