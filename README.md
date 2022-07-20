@@ -78,7 +78,7 @@ if there is a conflict in nameing the old version is overwritten
 
 TODO: add video of how to use the program
 
-### ⚙️ Configuration
+## ⚙️ Configuration
 
 Configuration is very minimal currently. It is done through the ``config.h``
 source file, the contents are as follows:
