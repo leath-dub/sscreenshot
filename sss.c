@@ -29,15 +29,10 @@
 #define BUTTON_3 3
 #define BUTTON_4 4
 
-// default configs
-#define LINE_WIDTH 4
-#define LINE_COLOR 0xEBDBB2
-#define SS_DIR "~/Desktop/"
 // user defined configs
 #include "config.h"
 
-
-// constants
+// global vars
 static xcb_connection_t *conn;
 static xcb_screen_t *screen;
 static xcb_window_t win;
@@ -316,8 +311,11 @@ data_to_png(_img img, const char *fname)
     if (!infop) DIE("NULL infop");
 
     // Create a file
-    // FILE *fp = fopen(SS_DIR"test.png", "rw");
-    FILE *fp = fopen(fname, "wb");
+    char *path = malloc(sizeof(char) * strlen(SS_DIR) + strlen(fname));
+    strcpy(path, SS_DIR);
+    strcat(path, fname);
+    FILE *fp = fopen(path, "wb");
+    free(path);
 
     png_init_io(ptr, fp);
     png_set_IHDR(
@@ -354,10 +352,10 @@ data_to_png(_img img, const char *fname)
 
     for (size_t y = 0; y < img.height; ++y) {
         for (size_t x = 0; x < img.width; ++x) {
-            unsigned long pix = xcb_image_get_pixel(img_t, x, y);
-            unsigned char blue = pix & vt->blue_mask;
-            unsigned char green = (pix & vt->green_mask) >> 8;
-            unsigned char red = (pix & vt->red_mask) >> 16;
+            uint32_t pix = xcb_image_get_pixel(img_t, x, y);
+            uint8_t blue = pix & vt->blue_mask;
+            uint8_t green = (pix & vt->green_mask) >> 8;
+            uint8_t red = (pix & vt->red_mask) >> 16;
             png_byte *bptr = &(bytep[x * 3]);
             bptr[0] = red;
             bptr[1] = green;

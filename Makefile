@@ -23,18 +23,18 @@ options:
 	@echo
 
 install:
-	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS}
+	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${BINDIR}/${OBJ}
 
 uninstall:
 	rm -f ${BINDIR}/${OBJ}
 
 here:
-	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS}
+	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${OBJ}
 
 link:
-	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS}
+	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${OBJ}
 	ln -s $(shell pwd)/${OBJ} ${BINDIR}/${OBJ}
 

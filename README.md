@@ -51,7 +51,7 @@ sudo make uninstall
 
 ## 🏃‍♂️ Usage
 
-SS_DIR = ~/Downloads (specified in ``config.h``)
+SS_DIR = ``$PWD`` (specified in ``config.h``)
 
 Run with no arguments(creates ``SS_DIR/screenshot.png``):
 ```shell

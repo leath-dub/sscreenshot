@@ -4,3 +4,5 @@
 !config.h
 !sss.c
 !Makefile
+!screenshots
+screenshots/*
