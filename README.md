@@ -76,7 +76,8 @@ sss -f test.png
 + the program does not append numbers, e.g. ``ss-1.png, ss-2.png, etc``.
 if there is a conflict in nameing the old version is overwritten
 
-[Watch the video](https://imgur.com/a/8Ogb0IH)
+https://user-images.githubusercontent.com/77889270/180052903-a9fba561-3ca6-4e7e-9c06-2b9f524df434.mp4
+
 ## ⚙️ Configuration
 
 Configuration is very minimal currently. It is done through the ``config.h``
