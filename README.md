@@ -43,6 +43,6 @@ To uninstall normally run:
 sudo make uninstall
 ```
 ### ❓Other build options:
-+ here -> compiles to current directory
-+ link -> compiles to current directory and creates symbolic link in binary directory
-+ unlink -> removes symbolic link
++ here 🠒 compiles to current directory
++ link 🠒 compiles to current directory and creates symbolic link in binary directory
++ unlink 🠒 removes symbolic link
