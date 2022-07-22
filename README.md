@@ -1,4 +1,4 @@
-# SimpleScreenShot - SSS
+# sscreenshot - sss
 
 A simple, toolkit-less screenshot program written in C + XCB api
 
