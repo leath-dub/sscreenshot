@@ -105,3 +105,21 @@ to:
 ```c
 #define SS_DIR "/home/MYNAME/" /* directory you want screenshots to go in */
 ```
+
+### Dependencies list
+
+run:
+```shell
+make depend
+```
+output
+```shell
+╭┤ dependencies ├╮
+│────────────────│
+│ libxcb         │
+│ libxcb-image   │
+│ libxcb-shm     │
+│ libxcb-cursor  │
+│ libpng         │
+╰────────────────╯
+```

@@ -1,7 +1,7 @@
 SRC=sss.c
 BINDIR=/usr/local/bin
 OBJ = ${SRC:.c=}
-CFLAGS=-lxcb-image -lxcb -lxcb-shm -lpng16 -lz
+CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
 CC=gcc
 
 all: options
@@ -41,3 +41,13 @@ link:
 unlink:
 	rm -f ${BINDIR}/${OBJ}
 	rm -f $(shell pwd)/${OBJ}
+
+depend:
+	@echo "╭┤ dependencies ├╮"
+	@echo "│────────────────│"
+	@echo "│ libxcb         │"
+	@echo "│ libxcb-image   │"
+	@echo "│ libxcb-shm     │"
+	@echo "│ libxcb-cursor  │"
+	@echo "│ libpng         │"
+	@echo "╰────────────────╯"
