@@ -1,4 +1,4 @@
-// Stantard headers
+// Standard headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -6,6 +6,7 @@
 // XCB headers
 #include <xcb/xcb.h>
 #include <xcb/xcb_image.h>
+#include <xcb/xcb_cursor.h>
 // Image headers
 #include <png.h>
 
@@ -19,6 +20,7 @@
 #define RES_GC         1
 #define RES_COLORMAP   2
 #define RES_PIXMAP     3
+#define RES_CURSOR     4
 // other symbols
 #define ERROR 0
 #define ALLPLANES ~0
@@ -81,6 +83,7 @@ static void internal_exit(const char *msg);
 static void create_window(void);
 static void event_loop(int charc, char *argv[]);
 static void data_to_png(_img img, const char *fname);
+static xcb_cursor_t load_cursor(const char *name);
 
 void
 connect_init(void)
@@ -119,6 +122,9 @@ res_add(uint32_t res_id, int type)
             break;
         case RES_PIXMAP:
             res->free_func = xcb_free_pixmap;
+            break;
+        case RES_CURSOR:
+            res->free_func = xcb_free_cursor;
             break;
         default:
             DIE("Invalid RES type");
@@ -371,6 +377,20 @@ data_to_png(_img img, const char *fname)
     xcb_image_destroy(img_t);
 }
 
+xcb_cursor_t
+load_cursor(const char *name) {
+    xcb_cursor_context_t *ctx;
+    xcb_cursor_t cid;
+
+    if (xcb_cursor_context_new(conn, screen, &ctx) < 0)
+        DIE("could not create cursor context");
+
+    cid = xcb_cursor_load_cursor(ctx, name); // "crosshair"
+    res_add(cid, RES_CURSOR);
+    xcb_cursor_context_free(ctx);
+    return cid;
+}
+
 int
 main(int charc, char *argv[])
 {
@@ -388,6 +408,7 @@ main(int charc, char *argv[])
     if (charc >= 2 && !strcmp(argv[1], "-f")) goto image;
 
     // req a pointer grab
+    xcb_cursor_t cid = load_cursor("crosshair");
     value_mask = XCB_EVENT_MASK_BUTTON_PRESS    |
                  XCB_EVENT_MASK_BUTTON_1_MOTION |
                  XCB_EVENT_MASK_BUTTON_RELEASE;
@@ -397,7 +418,7 @@ main(int charc, char *argv[])
         screen->root,
         value_mask,
         XCB_GRAB_MODE_ASYNC, XCB_GRAB_MODE_ASYNC,
-        XCB_NONE, XCB_NONE,
+        XCB_NONE, cid,
         XCB_CURRENT_TIME
     );
 
