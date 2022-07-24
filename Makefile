@@ -1,5 +1,9 @@
 SRC=sss.c
-BINDIR=/usr/local/bin
+
+PREFIX=/usr/local
+BINDIR=${PREFIX}/bin
+MANPREFIX=${PREFIX}/share/man
+
 OBJ = ${SRC:.c=}
 CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
 CC=gcc
@@ -25,9 +29,12 @@ options:
 install:
 	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${BINDIR}/${OBJ}
+	mkdir -p ${MANPREFIX}/man1/
+	cp sss.1 ${MANPREFIX}/man1/
 
 uninstall:
 	rm -f ${BINDIR}/${OBJ}
+	rm -f ${MANPREFIX}/man1/sss.1
 
 here:
 	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
@@ -36,11 +43,14 @@ here:
 link:
 	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${OBJ}
-	ln -s $(shell pwd)/${OBJ} ${BINDIR}/${OBJ}
+	ln -sf $(shell pwd)/${OBJ} ${BINDIR}/${OBJ}
+	mkdir -p ${MANPREFIX}/man1/
+	cp sss.1 ${MANPREFIX}/man1/
 
 unlink:
 	rm -f ${BINDIR}/${OBJ}
 	rm -f $(shell pwd)/${OBJ}
+	rm -f ${MANPREFIX}/man1/sss.1
 
 depend:
 	@echo "╭┤ dependencies ├╮"

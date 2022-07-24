@@ -3,6 +3,7 @@
 !README.md
 !config.h
 !sss.c
+!sss.1
 !Makefile
 !screenshots
 screenshots/*

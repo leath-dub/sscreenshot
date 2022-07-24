@@ -1,0 +1,80 @@
+.TH SSS 1 sss
+.SH NAME
+sss \- simple screenshot program
+.SH SYNOPSIS
+
+$ sss [\fIOPTION\fR] output.png
+
+.SH DESCRIPTION
+This program is a 2 button screenshot program. By default
+if the user gives no options it will take a screen shot
+of a user drawn area and write it to screenshot.png.
+.P
+The user can draw a rectangular area by holding left mouse
+button and dragging. A screenshot is only taken when
+the user presses right mouse button. This means you can
+draw as many rectangles as you like until you want to take a
+screenshot.
+.P
+The default directory where screenshots are stored is in
+<\fIlocation of repo\fR>/screenshots/
+
+.SH OPTIONS
+.B \-f
+?<\fIfilename\fR>
+
+takes a screenshot of entire screen, accepts optional
+argument of a filename e.g:
+.P
+    ----------------
+
+    $ sss -f out.png
+
+    ----------------
+
+if no argument is given output is written to fullscreen.png
+
+.B \-n
+?<\fIfilename\fR>
+
+takes a screenshot of user drawn area, accepts optional
+argument of a filename e.g:
+.P
+    ----------------
+
+    $ sss -n out.png
+
+    ----------------
+
+if no argument is given output is written to screenshot.png, this
+is the same behaviour is if no options were given
+
+.SH CONFIGURATION
+
+There should be a supplied \fBconfig.h\fR file in the cloned
+repository. Configuration is done by editing this file.
+The following are defined in that file.
+
+.B • LINE_WIDTH
+- defines the width of the border around the user
+drawn area, screenshots are bound inside this border
+
+.B • LINE_COLOR
+- 24bit hex-color code defines the color of the border
+note: the color code used is dependent on your root displays
+color depth
+
+.B • SS_DIR
+- \fB"string"\fR defines the absolute path to the directory where screenshots
+are stored. Note the default setting:
+
+.B • SS_DIR
+SRC_DIR \fB"/screenshots/"\fR
+
+you can prefix the path string with SRC_DIR to set the
+directory for screenshots to be relative to the source
+directory(the cloned repo)
+
+.B • CURSOR
+- "string" defines the xcursor to be used, refer
+to your cursor theme for options
