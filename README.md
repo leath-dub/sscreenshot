@@ -1,4 +1,4 @@
-# sscreenshot - sss
+# SimpleScreenShot - SSS
 
 A simple, toolkit-less screenshot program written in C + XCB api
 
@@ -86,6 +86,7 @@ source file, the contents are as follows:
 #define LINE_WIDTH 4 /* width of drawn box lines */
 #define LINE_COLOR 0xEBDBB2 /* color of drawn box lines */
 #define SS_DIR SRC_DIR "/screenshots/" /* directory you want screenshots to go in */
+#define CURSOR "cross" /* refer to your cursor theme /usr/share/icons */
 ```
 
 ### 🗒️ Notes
