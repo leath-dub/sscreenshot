@@ -334,8 +334,6 @@ data_to_png(_img img, const char *fname)
         fp = fopen(fname, "wb");
     } else {
         env = getenv("HOME");
-        printf("%s\n", env);
-        printf("%d\n", strlen(env));
         path = malloc(
             sizeof(char) * strlen(env) + strlen(fname)
         );
