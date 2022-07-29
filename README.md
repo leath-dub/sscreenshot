@@ -51,7 +51,7 @@ sudo make uninstall
 
 ## 🏃‍♂️ Usage
 
-SS_DIR = ``$PWD`` (specified in ``config.h``)
+SS_DIR = ``$HOME`` or ``$SS_DIR var if set``
 
 Run with no arguments(creates ``SS_DIR/screenshot.png``):
 ```shell
@@ -85,7 +85,6 @@ source file, the contents are as follows:
 ```c
 #define LINE_WIDTH 4 /* width of drawn box lines */
 #define LINE_COLOR 0xEBDBB2 /* color of drawn box lines */
-#define SS_DIR SRC_DIR "/screenshots/" /* directory you want screenshots to go in */
 #define CURSOR "cross" /* refer to your cursor theme /usr/share/icons */
 ```
 
@@ -97,14 +96,11 @@ the lines visable and what they obscure
 + If you wish to remove the source files after compilation, this is fine,
 just make sure that you are happy with your configuration as you cannot change
 it without recompiling
-+ You must give ``SS_DIR`` an absolute path if you remove ``SRC_DIR``. E.g.
-if I wanted to put screenshots in my home folder I would change:
-```c
-#define SS_DIR SRC_DIR "/screenshots/" /* directory you want screenshots to go in */
++ By default screenshots got to directory assigned to environment variable
+``$HOME``. If you want to specify a different directory you need to assign
+a value to the environment variable ``$SS_DIR``. In your shells config file put:
 ```
-to:
-```c
-#define SS_DIR "/home/MYNAME/" /* directory you want screenshots to go in */
+export SS_DIR=/home/username/screenshots
 ```
 
 ### Dependencies list

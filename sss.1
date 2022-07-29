@@ -17,7 +17,7 @@ draw as many rectangles as you like until you want to take a
 screenshot.
 .P
 The default directory where screenshots are stored is in
-<\fIlocation of repo\fR>/screenshots/
+the \fI$HOME\fR environment variable
 
 .SH OPTIONS
 .B \-f
@@ -51,7 +51,20 @@ is the same behaviour is if no options were given
 
 .SH CONFIGURATION
 
-There should be a supplied \fBconfig.h\fR file in the cloned
+Default directory is \fI$HOME\fR environment variable.
+To change the directory for screenshots to be copied to, assign a value"
+to \fI$SS_DIR\fR env variable e.g.: 
+
+    ----------------
+
+    $ export SS_DIR=/home/username/screenshots
+
+    ----------------
+
+The above command can be put in your .zshrc, .bashrc, etc - depending on the
+shell you are using( consult its documentation on exporting environment variables)
+
+Apart from that there should be a supplied \fBconfig.h\fR file in the cloned
 repository. Configuration is done by editing this file.
 The following are defined in that file.
 
@@ -63,17 +76,6 @@ drawn area, screenshots are bound inside this border
 - 24bit hex-color code defines the color of the border
 note: the color code used is dependent on your root displays
 color depth
-
-.B • SS_DIR
-- \fB"string"\fR defines the absolute path to the directory where screenshots
-are stored. Note the default setting:
-
-.B • SS_DIR
-SRC_DIR \fB"/screenshots/"\fR
-
-you can prefix the path string with SRC_DIR to set the
-directory for screenshots to be relative to the source
-directory(the cloned repo)
 
 .B • CURSOR
 - "string" defines the xcursor to be used, refer

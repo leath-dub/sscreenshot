@@ -317,11 +317,33 @@ data_to_png(_img img, const char *fname)
     if (!infop) DIE("NULL infop");
 
     // Create a file
-    char *path = malloc(sizeof(char) * strlen(SS_DIR) + strlen(fname));
-    strcpy(path, SS_DIR);
-    strcat(path, fname);
-    FILE *fp = fopen(path, "wb");
-    free(path);
+    // char *path = malloc(sizeof(char) * strlen(SS_DIR) + strlen(fname));
+    // strcpy(path, SS_DIR);
+    // strcat(path, fname);
+    char *path;
+    char *env;
+    FILE *fp;
+    if (getenv("SS_DIR") != NULL) {
+        env = getenv("SS_DIR");
+        path = malloc(
+            sizeof(char) * strlen(env) + strlen(fname)
+        );
+        strcpy(path, getenv("SS_DIR"));
+        strcat(path, "/");
+        strcat(path, fname);
+        fp = fopen(fname, "wb");
+    } else {
+        env = getenv("HOME");
+        printf("%s\n", env);
+        printf("%d\n", strlen(env));
+        path = malloc(
+            sizeof(char) * strlen(env) + strlen(fname)
+        );
+        strcpy(path, env);
+        strcat(path, "/");
+        strcat(path, fname);
+        fp = fopen(path, "wb");
+    } free(path);
 
     png_init_io(ptr, fp);
     png_set_IHDR(

@@ -27,7 +27,7 @@ options:
 	@echo
 
 install:
-	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
+	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS}
 	chmod +x ${BINDIR}/${OBJ}
 	mkdir -p ${MANPREFIX}/man1/
 	cp sss.1 ${MANPREFIX}/man1/
