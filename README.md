@@ -99,7 +99,7 @@ it without recompiling
 + By default screenshots got to directory assigned to environment variable
 ``$HOME``. If you want to specify a different directory you need to assign
 a value to the environment variable ``$SS_DIR``. In your shells config file put:
-```
+```shell
 export SS_DIR=/home/username/screenshots
 ```
 
