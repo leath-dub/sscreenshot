@@ -8,3 +8,4 @@
 !screenshots
 screenshots/*
 !screenshots/.gitkeep
+!dev-test.sh
