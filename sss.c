@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include <string.h>
+#include <errno.h>
 // XCB headers
 #include <xcb/xcb.h>
 #include <xcb/xcb_image.h>
@@ -34,6 +35,7 @@
 // user defined configs
 #include "config.h"
 
+extern int errno;
 // global vars
 static xcb_connection_t *conn;
 static xcb_screen_t *screen;
@@ -334,7 +336,8 @@ data_to_png(_img img, const char *fname)
       strcpy(path, getenv("SS_DIR"));
       strcat(path, "/");
       strcat(path, fname);
-      fp = fopen(fname, "wb");
+      if ((fp = fopen(path, "wb")) == NULL)
+        fprintf(stderr, "sss: %s\n", strerror(errno));
     }
   else
     {
@@ -343,7 +346,8 @@ data_to_png(_img img, const char *fname)
       strcpy(path, env);
       strcat(path, "/");
       strcat(path, fname);
-      fp = fopen(path, "wb");
+      if ((fp = fopen(path, "wb")) == NULL)
+        fprintf(stderr, "sss: %s\n", strerror(errno));
     }
   free(path);
 
