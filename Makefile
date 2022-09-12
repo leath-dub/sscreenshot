@@ -6,7 +6,7 @@ MANPREFIX=${PREFIX}/share/man
 
 OBJ = ${SRC:.c=}
 CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
-CC=gcc
+CC=${CC:=gcc}
 
 all: options
 
