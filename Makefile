@@ -6,7 +6,6 @@ MANPREFIX=${PREFIX}/share/man
 
 OBJ = ${SRC:.c=}
 CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
-CC=${CC:=gcc}
 
 all: options
 
@@ -23,11 +22,11 @@ options:
 	@echo "╰────────────────────╯\033[0;37m"
 	@echo
 	@echo "\033[0;31mCFLAGS\033[0;37m = ${CFLAGS}"
-	@echo "\033[0;31mCC\033[0;37m     = ${CC}"
+	@echo "\033[0;31mCC\033[0;37m     = $(CC)"
 	@echo
 
 install:
-	${CC} -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS}
+	$(CC) -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS}
 	chmod +x ${BINDIR}/${OBJ}
 	mkdir -p ${MANPREFIX}/man1/
 	cp sss.1 ${MANPREFIX}/man1/
@@ -37,11 +36,11 @@ uninstall:
 	rm -f ${MANPREFIX}/man1/sss.1
 
 here:
-	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
+	$(CC) -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${OBJ}
 
 link:
-	${CC} -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
+	$(CC) -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
 	chmod +x ${OBJ}
 	ln -sf $(shell pwd)/${OBJ} ${BINDIR}/${OBJ}
 	mkdir -p ${MANPREFIX}/man1/
