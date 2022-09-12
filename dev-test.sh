@@ -30,6 +30,7 @@ test()
       }
     }
 
+    # test 3
     sss -f && {
       is_png ./screenshot.png || {
         echo "failed at test 3"
@@ -37,6 +38,7 @@ test()
       }
     }
 
+    # test 4
     sss -n test.png && {
       is_png ./test.png || {
         echo "failed at test 4"
@@ -44,6 +46,7 @@ test()
       }
     }
 
+    # test 5
     sss -f test.png && {
       is_png ./test.png || {
         echo "failed at test 5"
