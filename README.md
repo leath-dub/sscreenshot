@@ -120,3 +120,11 @@ output
 │ libpng         │
 ╰────────────────╯
 ```
+
+#### Void linux
+You only need to install ``xcb-util-cursor-devel`` package
+
+## Contributions
+Feel free to make pull requests, I will get to them asap.  I would appreciate
+contributing your experience installing on different machines, what packages
+you need, etc.
