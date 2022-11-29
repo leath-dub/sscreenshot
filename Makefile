@@ -1,13 +1,14 @@
-SRC=sss.c
+# sss - simple screenshot
+# see LICENSE for license info
+.POSIX:
 
-PREFIX=/usr/local
-BINDIR=${PREFIX}/bin
-MANPREFIX=${PREFIX}/share/man
+include config.mk
 
-OBJ = ${SRC:.c=}
-CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
+SRC = sss.c
+OBJ = $(SRC:.c=.o)
+# CFLAGS=-lxcb-cursor -lxcb-image -lxcb -lxcb-shm -lpng16 -lz
 
-all: options
+all: options sss
 
 options:
 	@echo
@@ -21,35 +22,39 @@ options:
 	@echo "│   \033[0;37m└───> uninstall\033[0;32m  │"
 	@echo "╰────────────────────╯\033[0;37m"
 	@echo
-	@echo "\033[0;31mCFLAGS\033[0;37m = ${CFLAGS}"
-	@echo "\033[0;31mCC\033[0;37m     = $(CC)"
+	@echo "\033[0;31mCFLAGS\033[0;37m  = $(STCFLAGS)"
+	@echo "\033[0;31mLDFLAGS\033[0;37m = $(STLDFLAGS)"
+	@echo "\033[0;31mCC\033[0;37m      = $(CC)"
 	@echo
 
-install:
-	$(CC) -g -o ${BINDIR}/${OBJ} ${SRC} ${CFLAGS}
-	chmod +x ${BINDIR}/${OBJ}
-	mkdir -p ${MANPREFIX}/man1/
-	cp sss.1 ${MANPREFIX}/man1/
+sss: $(OBJ)
+	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
+
+install: sss
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp -f sss $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/sss
+	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+	cp sss.1 $(DESTDIR)$(MANPREFIX)/man1/sss.1
+	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/sss.1
 
 uninstall:
-	rm -f ${BINDIR}/${OBJ}
-	rm -f ${MANPREFIX}/man1/sss.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/sss
+	rm -f $(DESTDIR)$(MANPREFIX)/man1/sss.1
 
-here:
-	$(CC) -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
-	chmod +x ${OBJ}
+here: sss
 
-link:
-	$(CC) -g -o ${OBJ} ${SRC} ${CFLAGS} -DSRC_DIR=\"$(shell pwd)\"
-	chmod +x ${OBJ}
-	ln -sf $(shell pwd)/${OBJ} ${BINDIR}/${OBJ}
-	mkdir -p ${MANPREFIX}/man1/
-	cp sss.1 ${MANPREFIX}/man1/
+link: sss
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	ln -sf $(shell pwd)/sss $(DESTDIR)$(PREFIX)/bin/sss
+	chmod 755 sss
+	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+	ln -sf $(shell pwd)/sss.1 $(DESTDIR)$(MANPREFIX)/man1/sss.1
+	chmod 644 sss.1
 
 unlink:
-	rm -f ${BINDIR}/${OBJ}
-	rm -f $(shell pwd)/${OBJ}
-	rm -f ${MANPREFIX}/man1/sss.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/sss
+	rm -f $(DESTDIR)$(MANPREFIX)/man1/sss.1
 
 depend:
 	@echo "╭┤ dependencies ├╮"
@@ -60,3 +65,5 @@ depend:
 	@echo "│ libxcb-cursor  │"
 	@echo "│ libpng         │"
 	@echo "╰────────────────╯"
+
+.PHONY: install here link unlink uninstall depend

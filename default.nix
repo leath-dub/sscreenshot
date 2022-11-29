@@ -7,7 +7,13 @@ stdenv.mkDerivation {
 
   src = ./.;
 
-  propagatedBuildInputs = with pkgs; [
+  nativeBuildInputs = [
+    pkg-config
+    tinycc
+    gcc
+  ];
+
+  buildInputs = [
     xorg.libxcb
     xorg.xcbutilcursor
     xorg.xcbutilimage
@@ -15,10 +21,11 @@ stdenv.mkDerivation {
   ];
 
   preInstall = ''
-    export CC=gcc
     sed -i "s|/usr/local|$out|" Makefile
     mkdir -p $out/bin
   '';
+
+  makeFlags = [ "CC=gcc" "PREFIX=$(out)" ];
 
   system = builtins.currentSystem;
 
