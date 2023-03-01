@@ -10,3 +10,4 @@ screenshots/*
 !screenshots/.gitkeep
 !dev-test.sh
 !default.nix
+!config.mk
